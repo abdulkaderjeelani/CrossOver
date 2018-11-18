@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "IdentityServer.Interceptor.Core/1.0.0": {
+      "type": "project",
+      "framework": ".NETStandard,Version=v1.1",
+      "compile": {
+        "bin/Debug/IdentityServer.Interceptor.Core.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/IdentityServer.Interceptor.Core.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/IdentityServer.Interceptor.Core.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

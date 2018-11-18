@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "Microsoft.AspNetCore.Http.Abstractions": "1.0.0",
+    "NETStandard.Library": "1.6.0",
+    "Novell.Directory.Ldap.NETStandard": "2.3.5"
+  },
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+  "Microsoft.Extensions.Logging": "1.0.0",
+  "Microsoft.Extensions.Logging.Console": "1.0.0",
+  "Microsoft.Extensions.Logging.Debug": "1.0.0",
+  "version": "1.0.0-*"
+}

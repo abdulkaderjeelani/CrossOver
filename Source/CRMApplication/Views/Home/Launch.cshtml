@@ -1,0 +1,110 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/js/xd-utils.js"></script>
+    <script src="~/js/xdLocalStorage.js"></script>
+    <script type="text/javascript">
+        xdLocalStorage.init(
+                {
+                    iframeUrl: 'http://localhost:5001/storage.html',
+                    initCallback: function () {
+                        console.log('Got iframe ready');
+                        xdLocalStorage.setItem('check', 'no callback');
+                    }
+                }
+        );
+
+        var key_access_token = '_access_token';
+        var key_user_name = '_user_name';
+
+        function store(key, value) {
+            xdLocalStorage.setItem(key, value, function (data) {
+                if (data.success) {
+                    console.log('success');
+                } else {
+                    console.log('fail');
+                }
+            });
+
+        }
+
+        function get(key) {
+
+            xdLocalStorage.getItem(key, function (data) {
+                console.log('success');
+
+            });
+
+        }
+
+        function remove(key) {
+            xdLocalStorage.removeItem(key, function (data) {
+                console.log('success');
+            });
+
+        }
+    </script>
+</head>
+<body>
+
+    <script type="text/javascript">
+
+        function getUrlVars() {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }
+
+        function navigateTo(action) {
+
+            if (action == 'logout')
+                logout();
+            else {
+                xdLocalStorage.getItem(key_access_token, function (data) {
+                    console.log('success');
+                    var access_token = data.value;
+                    window.location.href = "http://" + window.location.host + "/home/" + action + "?access_token=" + access_token;
+                });
+            }
+        }
+
+        $(document).ready(function () {
+            var tout = window.setTimeout(function () {
+                xdLocalStorage.getItem(key_access_token, function (data) {
+                    console.log('success');
+                    //debugger;                   
+                   
+                    xdLocalStorage.getItem(key_user_name, function (data2) {
+                        var name = data2.value;
+
+                        var access_token = data.value;
+                        var query = "";
+                        if (access_token != null)
+                            query = "?access_token=" + access_token + "&name=" + name;
+
+                        window.location.href = "http://" + window.location.host + "/home/" + "index" + query;
+                        clearTimeout(tout);
+                    });
+                    
+
+                    
+                });
+            }, 1000);
+
+        });
+    </script>
+</body>
+</html>

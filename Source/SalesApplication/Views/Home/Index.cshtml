@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>Sales Application</h2>
+        <ul>
+            <li>
+
+
+                <div id="profile">
+                    Profile Name : <span id="name"></span>
+                </div>
+              
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var access_token = getUrlVars()["access_token"];
+            var name = getUrlVars()["name"];
+            $("#name").html(name);
+
+            var tout = setTimeout(function () {
+                store(key_access_token, access_token);
+                store(key_user_name, name);
+                clearTimeout(tout);
+
+            }, 1000);
+
+
+        });
+
+
+    </script>
+
+</div>
